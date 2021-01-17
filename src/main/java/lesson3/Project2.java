@@ -12,7 +12,8 @@ import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.sleep;
 
-public class Project1 {
+public class Project2 {
+
     private static WebDriver driver;
     private static final String LOGIN_PAGE_URL = "https://crm.geekbrains.space/user/login";
     private static final String S_LOGIN = "Applanatest";
@@ -40,40 +41,41 @@ public class Project1 {
         WebElement loginButton = driver.findElement(By.name("_submit"));
         loginButton.click();
 
-        driver.findElement(By.xpath("//*[@id=\"main-menu\"]/ul/li[1]/a/span")).click();
+        driver.findElement(By.xpath("//*[@id=\"main-menu\"]/ul/li[3]/a/span")).click();
 
-        driver.findElement(By.xpath("//*[@id=\"main-menu\"]/ul/li[1]/ul/li[4]/a/span")).click();
-
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.findElement(By.cssSelector("div[class='pull-left btn-group icons-holder']")).click();
+        driver.findElement(By.xpath("//*[@id=\"main-menu\"]/ul/li[3]/ul/li[4]/a/span")).click();
 
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.findElement(By.name("crm_contact[lastName]")).sendKeys("mmmm");
+        driver.findElement(By.xpath("//*[@id=\"container\"]/div[1]/div/div/div[2]/div/div")).click();
 
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+      driver.findElement(By.name("crm_project[name]")).sendKeys("mmmm");
 
-        driver.findElement(By.name("crm_contact[firstName]")).sendKeys("mmmm");
+      //organizazia
+        /*driver.findElement(By.xpath("//*[@id=\"crm_project_company-uid-600323b949c23\"]")).click();
+        driver.findElement(By.xpath("//*[@id=\"select2-drop\"]/ul[2]/li[1]/div")).click();*/
 
-        /*driver.findElement(By.xpath("//*[@id=\"s2id_crm_contact_company-uid-6002aeeec0922\"]/a")).click();
-        driver.findElement(By.xpath("//*[@id=\"select2-drop\"]/div/input")).sendKeys("12323142342134");
+//podrazdelenie
+        Select businessUnitDropDown = new Select(driver.findElement(By.name("crm_project[businessUnit]")));
+        businessUnitDropDown.selectByValue("1");
+//kurator
+        Select curatorDropDown = new Select(driver.findElement(By.name("crm_project[curator]")));
+        curatorDropDown.selectByValue("114");
+//rukovod
+        Select rpDropDown = new Select(driver.findElement(By.name("crm_project[rp]")));
+        rpDropDown.selectByValue("114");
+//manager
+        Select managerDropDown = new Select(driver.findElement(By.name("crm_project[manager]")));
+        managerDropDown.selectByValue("114");
 
-*/
-
-        driver.findElement(By.xpath("//*[@id=\"s2id_crm_contact_company-uid-60032e16a60ce\"]/a")).click();
-        WebElement orgTextInput = driver.findElement(By.xpath("//*[@id=\"select2-drop\"]/div/input"));
-        orgTextInput.sendKeys("12323142342134");
-
-        /*Select companyDropDown = new Select(driver.findElement(By.cssSelector("span[class='select2-chosen']")));
-        companyDropDown.selectByVisibleText("Test Organisation_1");*/
-
-       /* driver.findElement(By.xpath("//*[@id=\"s2id_crm_contact_company-uid-6001e3d4de43f\"]/a/span[1]")).click();*/
-        driver.findElement(By.name("crm_contact[jobTitle]")).sendKeys("mmmm");
-
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.findElement(By.xpath("//*[@id=\"crm_contact-uid-6002b2ee4efd1\"]/div[1]/div/div/div[2]/div[1]/div[4]/button")).click();
-
-
-
+//soxranit i zakrit
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.findElement(By.xpath("//*[@id=\"crm_project-uid-600323b9ab1da\"]/div[1]/div/div/div[2]/div[1]/div[4]/button")).click();
 
         driver.quit();
+
+
+
+
     }
 }
